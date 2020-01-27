@@ -55,8 +55,8 @@ class JWTAuthenticationFilter(
 
     return Jwts.builder()
         .setHeaderParam("typ", "JWT")
-        .setAudience("kotlin-spring")
-        .setIssuer("kotlin-spring-security")
+        .setAudience("kotlin-spring-ddd")
+        .setIssuer("kotlin-spring-ddd-security")
         .signWith(SignatureAlgorithm.forName(jwtConfig.algorithm), jwtConfig.keyPair.privateKey)
         .setExpiration(Date(System.currentTimeMillis() + jwtConfig.expirationTime))
         .setSubject(user.username)

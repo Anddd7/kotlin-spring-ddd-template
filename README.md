@@ -1,4 +1,4 @@
-# kotlin-spring
+# kotlin-spring-ddd
 
 ## Run
 
@@ -65,9 +65,9 @@ docker-compose -f docker-compose.test.yml up --build
 
 ```bash
 # build image
-docker build -t kotlin-spring .
+docker build -t kotlin-spring-ddd .
 # inject environment variables, check details in config/application-dev.yml
-docker run -p 8080:8080 <environment> kotlin-spring
+docker run -p 8080:8080 <environment> kotlin-spring-ddd
 ```
 
 **Should put this part into CI/CD, DON'T manually deploy in production**

@@ -1,4 +1,3 @@
-import org.gradle.api.tasks.testing.logging.TestLogEvent
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import java.time.LocalDateTime.now
 import java.time.format.DateTimeFormatter.ofPattern
@@ -28,21 +27,13 @@ java.targetCompatibility = JavaVersion.VERSION_11
 plugins {
   val kotlinVersion = "1.3.61"
 
-  // core plugins, which is already include in plugin dependencies spec
   java
   idea
   jacoco
 
   kotlin("jvm") version kotlinVersion
-  // [spring support](https://kotlinlang.org/docs/reference/compiler-plugins.html#spring-support)
   kotlin("plugin.spring") version kotlinVersion
-  // base on `kotlin-noarg`, generate default method for entity
-//    kotlin("plugin.jpa") version kotlinVersion
 
-  /**
-   * binary(external) plugins, provide id and version to resolve it
-   * base plugin for spring-boot, provide plugins and tasks
-   */
   id("org.springframework.boot") version "2.2.2.RELEASE"
   id("io.spring.dependency-management") version "1.0.8.RELEASE"
 
@@ -89,12 +80,6 @@ jacoco {
 /** -------------- dependencies management -------------- */
 
 dependencies {
-  /**
-   * `compile` is deprecated;
-   *
-   * `implementation` can only access by this project
-   * `api` can access by top-level project which include this project
-   */
   /* kotlin */
   implementation(kotlin("stdlib-jdk8"))
   implementation(kotlin("reflect"))
@@ -114,7 +99,7 @@ dependencies {
   implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
   testImplementation("com.ninja-squad:springmockk:1.1.3")
 
-/* security */
+  /* security */
   implementation("org.springframework.boot:spring-boot-starter-security")
   implementation("io.jsonwebtoken:jjwt:0.9.1")
   testImplementation("org.springframework.security:spring-security-test")
@@ -123,26 +108,16 @@ dependencies {
   implementation("org.springframework.boot:spring-boot-starter-actuator")
   runtimeOnly("net.logstash.logback:logstash-logback-encoder:5.2")
 
-  /* jsr107 cache */
-  implementation("org.springframework.boot:spring-boot-starter-cache")
-  implementation("javax.cache:cache-api")
-  implementation("org.ehcache:ehcache")
-
   /* swagger */
   implementation("io.springfox:springfox-swagger2:2.9.2")
   runtimeOnly("io.springfox:springfox-swagger-ui:2.9.2")
 
-/* db */
+  /* db */
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  // different with flyway-plugin, inject this and open spring auto-migration by flyway
-  runtimeOnly("org.flywaydb:flyway-core")
-  // postgres
-  runtimeOnly("org.postgresql:postgresql")
-  // hibernate x postgresql's jsonb
   implementation("com.vladmihalcea:hibernate-types-52:2.3.2")
-  // test with postgres
+  runtimeOnly("org.flywaydb:flyway-core")
+  runtimeOnly("org.postgresql:postgresql")
   testImplementation("io.zonky.test:embedded-database-spring-test:1.5.2")
-  testRuntimeOnly("org.testcontainers:postgresql:1.12.4")
 
   /* utils */
   implementation("com.google.guava:guava:28.1-jre")

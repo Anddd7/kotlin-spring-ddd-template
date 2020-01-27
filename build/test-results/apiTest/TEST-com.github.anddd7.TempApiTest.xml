@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.anddd7.TempApiTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-01-27T03:51:23" hostname="CNadliao.local" time="0.562">
-  <properties/>
-  <testcase name="should_Return_Version()" classname="com.github.anddd7.TempApiTest" time="0.064"/>
-  <testcase name="should_Pass_Validation_Of_Request_Parameters_And_Body()" classname="com.github.anddd7.TempApiTest" time="0.452"/>
-  <testcase name="should_Return_Healthy_Info()" classname="com.github.anddd7.TempApiTest" time="0.041"/>
-  <system-out><![CDATA[CONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINED]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>

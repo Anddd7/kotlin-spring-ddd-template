@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.github.anddd7.security.AuthPermissionTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-01-27T03:51:02" hostname="CNadliao.local" time="0.0">
-  <properties/>
-  <testcase name="isBelongTo()" classname="com.github.anddd7.security.AuthPermissionTest" time="0.0"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
