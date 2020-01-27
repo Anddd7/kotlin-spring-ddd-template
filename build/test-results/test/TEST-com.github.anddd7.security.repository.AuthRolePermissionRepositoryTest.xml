@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.github.anddd7.security.repository.AuthRolePermissionRepositoryTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-01-27T03:51:00" hostname="CNadliao.local" time="0.458">
+  <properties/>
+  <testcase name="should return all roles and related permissions()" classname="com.github.anddd7.security.repository.AuthRolePermissionRepositoryTest" time="0.375"/>
+  <testcase name="should return whether role have the permission()" classname="com.github.anddd7.security.repository.AuthRolePermissionRepositoryTest" time="0.035"/>
+  <testcase name="should return all permissions and related roles()" classname="com.github.anddd7.security.repository.AuthRolePermissionRepositoryTest" time="0.043"/>
+  <system-out><![CDATA[CONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDHibernate: select authrole0_.id as id1_1_, authrole0_.name as name2_1_, authrole0_.parent_id as parent_i3_1_ from auth_role authrole0_
+Hibernate: select permission0_.role_id as role_id2_2_0_, permission0_.permission_code as permissi1_2_0_, permission0_.permission_code as permissi1_2_1_, permission0_.role_id as role_id2_2_1_, permission0_.expired_date as expired_3_2_1_ from auth_role_permission permission0_ where permission0_.role_id=?
+Hibernate: select authpermis0_.code as code1_0_0_, authpermis0_.description as descript2_0_0_ from auth_permission authpermis0_ where authpermis0_.code=?
+Hibernate: select permission0_.role_id as role_id2_2_0_, permission0_.permission_code as permissi1_2_0_, permission0_.permission_code as permissi1_2_1_, permission0_.role_id as role_id2_2_1_, permission0_.expired_date as expired_3_2_1_ from auth_role_permission permission0_ where permission0_.role_id=?
+Hibernate: select permission0_.role_id as role_id2_2_0_, permission0_.permission_code as permissi1_2_0_, permission0_.permission_code as permissi1_2_1_, permission0_.role_id as role_id2_2_1_, permission0_.expired_date as expired_3_2_1_ from auth_role_permission permission0_ where permission0_.role_id=?
+Hibernate: select authpermis0_.code as code1_0_0_, authpermis0_.description as descript2_0_0_ from auth_permission authpermis0_ where authpermis0_.code=?
+CONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDHibernate: select authrole0_.id as id1_1_0_, authrole0_.name as name2_1_0_, authrole0_.parent_id as parent_i3_1_0_ from auth_role authrole0_ where authrole0_.id=?
+Hibernate: select permission0_.role_id as role_id2_2_0_, permission0_.permission_code as permissi1_2_0_, permission0_.permission_code as permissi1_2_1_, permission0_.role_id as role_id2_2_1_, permission0_.expired_date as expired_3_2_1_ from auth_role_permission permission0_ where permission0_.role_id=?
+Hibernate: select authpermis0_.code as code1_0_0_, authpermis0_.description as descript2_0_0_ from auth_permission authpermis0_ where authpermis0_.code=?
+CONSOLE_LOG_PATTERN_IS_UNDEFINEDCONSOLE_LOG_PATTERN_IS_UNDEFINEDHibernate: select authpermis0_.code as code1_0_, authpermis0_.description as descript2_0_ from auth_permission authpermis0_
+Hibernate: select rolerefs0_.permission_code as permissi1_2_0_, rolerefs0_.role_id as role_id2_2_0_, rolerefs0_.permission_code as permissi1_2_1_, rolerefs0_.role_id as role_id2_2_1_, rolerefs0_.expired_date as expired_3_2_1_ from auth_role_permission rolerefs0_ where rolerefs0_.permission_code=?
+Hibernate: select authrole0_.id as id1_1_0_, authrole0_.name as name2_1_0_, authrole0_.parent_id as parent_i3_1_0_ from auth_role authrole0_ where authrole0_.id=?
+Hibernate: select authrole0_.id as id1_1_0_, authrole0_.name as name2_1_0_, authrole0_.parent_id as parent_i3_1_0_ from auth_role authrole0_ where authrole0_.id=?
+Hibernate: select children0_.parent_id as parent_i3_1_0_, children0_.id as id1_1_0_, children0_.id as id1_1_1_, children0_.name as name2_1_1_, children0_.parent_id as parent_i3_1_1_ from auth_role children0_ where children0_.parent_id=?
+Hibernate: select children0_.parent_id as parent_i3_1_0_, children0_.id as id1_1_0_, children0_.id as id1_1_1_, children0_.name as name2_1_1_, children0_.parent_id as parent_i3_1_1_ from auth_role children0_ where children0_.parent_id=?
+Hibernate: select rolerefs0_.permission_code as permissi1_2_0_, rolerefs0_.role_id as role_id2_2_0_, rolerefs0_.permission_code as permissi1_2_1_, rolerefs0_.role_id as role_id2_2_1_, rolerefs0_.expired_date as expired_3_2_1_ from auth_role_permission rolerefs0_ where rolerefs0_.permission_code=?
+Hibernate: select children0_.parent_id as parent_i3_1_0_, children0_.id as id1_1_0_, children0_.id as id1_1_1_, children0_.name as name2_1_1_, children0_.parent_id as parent_i3_1_1_ from auth_role children0_ where children0_.parent_id=?
+CONSOLE_LOG_PATTERN_IS_UNDEFINED]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
