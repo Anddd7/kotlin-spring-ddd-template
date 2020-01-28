@@ -9,3 +9,6 @@ spring:
     url: jdbc:postgresql://${POSTGRES_HOST:127.0.0.1}:${POSTGRES_PORT:5432}/${POSTGRES_DB:local}
     username: ${POSTGRES_USER:test}
     password: ${POSTGRES_PASSWORD:test}
+
+downstream:
+  stock: http://localhost:8080
