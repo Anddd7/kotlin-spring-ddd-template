@@ -13,18 +13,3 @@ spring:
         jdbc:
           lob:
             non_contextual_creation: true
-  cache:
-    jcache:
-      config: "classpath:ehcache3.xml"
-
-management:
-  server:
-    port: 8081
-  endpoints:
-    web:
-      exposure:
-        include:
-          - health
-          - info
-          - metrics
-          - prometheus

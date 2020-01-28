@@ -5,10 +5,11 @@ import java.time.format.DateTimeFormatter.ofPattern
 /** -------------- project's properties -------------- */
 
 group = "com.github.anddd7"
-version = "1.0-SNAPSHOT"
+version = "0.0.1-SNAPSHOT"
 
 repositories {
   mavenCentral()
+  maven { url = uri("https://repo.spring.io/milestone") }
   jcenter()
 }
 
@@ -33,6 +34,8 @@ plugins {
 
   kotlin("jvm") version kotlinVersion
   kotlin("plugin.spring") version kotlinVersion
+  kotlin("plugin.jpa") version kotlinVersion
+  kotlin("plugin.noarg") version kotlinVersion
 
   id("org.springframework.boot") version "2.2.2.RELEASE"
   id("io.spring.dependency-management") version "1.0.8.RELEASE"
@@ -77,6 +80,10 @@ jacoco {
   toolVersion = "0.8.3"
 }
 
+noArg {
+  annotation("javax.persistence.Entity")
+}
+
 /** -------------- dependencies management -------------- */
 
 dependencies {
@@ -100,9 +107,9 @@ dependencies {
   testImplementation("com.ninja-squad:springmockk:1.1.3")
 
   /* security */
-  implementation("org.springframework.boot:spring-boot-starter-security")
-  implementation("io.jsonwebtoken:jjwt:0.9.1")
-  testImplementation("org.springframework.security:spring-security-test")
+//  implementation("org.springframework.boot:spring-boot-starter-security")
+//  implementation("io.jsonwebtoken:jjwt:0.9.1")
+//  testImplementation("org.springframework.security:spring-security-test")
 
   /* monitoring x logging */
   implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -117,10 +124,17 @@ dependencies {
   implementation("com.vladmihalcea:hibernate-types-52:2.3.2")
   runtimeOnly("org.flywaydb:flyway-core")
   runtimeOnly("org.postgresql:postgresql")
+
+  /* mock db x server */
   testImplementation("io.zonky.test:embedded-database-spring-test:1.5.2")
+  testImplementation("com.github.tomakehurst:wiremock:2.25.1")
 
   /* utils */
   implementation("com.google.guava:guava:28.1-jre")
+
+  /* architecture verification */
+  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.12.0")
+  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.12.0")
 }
 
 /** -------------- configure tasks -------------- */
