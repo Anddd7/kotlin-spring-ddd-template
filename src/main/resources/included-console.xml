@@ -1,12 +1,12 @@
 <included>
+  <property name="CONSOLE_LOG_PATTERN"
+    value="%yellow(%d{HH:mm:ss.SSS}) %red([%thread]) %highlight(%5level) %cyan(%logger{39}) -%magenta(${MDC}) %msg%n"/>
+  <property name="MDC" value="%replace( %mdc){'^ \$',''}"/>
+
   <appender class="ch.qos.logback.core.ConsoleAppender" name="STDOUT">
     <encoder>
       <pattern>${CONSOLE_LOG_PATTERN}</pattern>
     </encoder>
     <withJansi>true</withJansi>
   </appender>
-  <property name="CONSOLE_LOG_PATTERN"
-    value="%yellow(%d{HH:mm:ss.SSS}) %red([%thread]) %highlight(%5level) %cyan(%logger{39}) -%magenta(${MDC}) %msg%n"/>
-
-  <property name="MDC" value="%replace( %mdc){'^ \$',''}"/>
 </included>
