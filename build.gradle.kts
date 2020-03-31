@@ -26,10 +26,11 @@ java.targetCompatibility = JavaVersion.VERSION_11
 
 // import plugins into this project
 plugins {
-  val kotlinVersion = "1.3.61"
+  val kotlinVersion = "1.3.70"
 
-  java
+  // core plugins, which is already include in plugin dependencies spec
   idea
+  java
   jacoco
 
   kotlin("jvm") version kotlinVersion
@@ -37,24 +38,32 @@ plugins {
   kotlin("plugin.jpa") version kotlinVersion
   kotlin("plugin.noarg") version kotlinVersion
 
-  id("org.springframework.boot") version "2.2.2.RELEASE"
-  id("io.spring.dependency-management") version "1.0.8.RELEASE"
+  /**
+   * binary(external) plugins, provide id and version to resolve it
+   * base plugin for spring-boot, provide plugins and tasks
+   */
+  id("org.springframework.boot") version "2.2.4.RELEASE"
+  id("io.spring.dependency-management") version "1.0.9.RELEASE"
 
   id("org.flywaydb.flyway") version "6.1.4"
 
   id("io.gitlab.arturbosch.detekt") version "1.3.0"
+
+  id("org.owasp.dependencycheck") version "5.3.2"
 }
+
 /** -------------- configure imported plugin -------------- */
 
-val sourceSets = the<SourceSetContainer>()
-
-sourceSets {
-  create("apiTest") {
-    java.srcDir("src/apiTest/kotlin")
+val apiSourceSet = sourceSets.create("apiTest") {
+  withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+    kotlin.srcDir("src/apiTest/kotlin")
     resources.srcDir("src/apiTest/resources")
-    compileClasspath += sourceSets["test"].compileClasspath
-    runtimeClasspath += sourceSets["test"].runtimeClasspath
   }
+
+  val testSourceSet = sourceSets.test.get()
+
+  compileClasspath += testSourceSet.runtimeClasspath
+  runtimeClasspath += testSourceSet.runtimeClasspath
 }
 
 idea {
@@ -64,6 +73,11 @@ idea {
   module {
     outputDir = file("$buildDir/idea-compiler/main")
     testOutputDir = file("$buildDir/idea-compiler/test")
+
+    apiSourceSet.withConvention(org.jetbrains.kotlin.gradle.plugin.KotlinSourceSet::class) {
+      testSourceDirs = testSourceDirs + kotlin.srcDirs
+      testResourceDirs = testResourceDirs + resources.srcDirs
+    }
   }
 }
 
@@ -72,12 +86,13 @@ flyway {
 }
 
 detekt {
+//  failFast = true
   toolVersion = "1.1.1"
   input = files("src/main/kotlin")
 }
 
 jacoco {
-  toolVersion = "0.8.3"
+  toolVersion = "0.8.5"
 }
 
 noArg {
@@ -88,24 +103,26 @@ noArg {
 
 dependencies {
   /* kotlin */
-  implementation(kotlin("stdlib-jdk8"))
-  implementation(kotlin("reflect"))
-  testImplementation("io.mockk:mockk:1.9.3")
-  testImplementation("org.assertj:assertj-core:3.14.0")
-
-  /* junit5 */
+  implementation("org.jetbrains.kotlin:kotlin-reflect")
+  implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+  /* kotlin test */
   testImplementation("org.junit.jupiter:junit-jupiter-engine")
+  testImplementation("io.mockk:mockk:1.9.3")
+  testImplementation("org.assertj:assertj-core:3.15.0")
+  /* kotlin coroutines */
+//  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
+//  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")
+//  testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test")
 
   /* spring mvc */
   implementation("org.springframework.boot:spring-boot-starter-web")
+  implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
   testImplementation("org.springframework.boot:spring-boot-starter-test") {
     exclude(module = "junit")
     exclude(group = "org.mockito")
     exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
   }
-  implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.10.+")
   testImplementation("com.ninja-squad:springmockk:1.1.3")
-
   /* security */
 //  implementation("org.springframework.boot:spring-boot-starter-security")
 //  implementation("io.jsonwebtoken:jjwt:0.9.1")
@@ -113,7 +130,7 @@ dependencies {
 
   /* monitoring x logging */
   implementation("org.springframework.boot:spring-boot-starter-actuator")
-  runtimeOnly("net.logstash.logback:logstash-logback-encoder:5.2")
+  implementation("net.logstash.logback:logstash-logback-encoder:6.3")
 
   /* swagger */
   implementation("io.springfox:springfox-swagger2:2.9.2")
@@ -127,14 +144,11 @@ dependencies {
 
   /* mock db x server */
   testImplementation("io.zonky.test:embedded-database-spring-test:1.5.2")
-  testImplementation("com.github.tomakehurst:wiremock:2.25.1")
-
-  /* utils */
-  implementation("com.google.guava:guava:28.1-jre")
+  testImplementation("com.github.tomakehurst:wiremock:2.26.0")
 
   /* architecture verification */
-  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.12.0")
-  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.12.0")
+  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.13.1")
+  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.13.1")
 }
 
 /** -------------- configure tasks -------------- */

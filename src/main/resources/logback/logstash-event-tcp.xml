@@ -1,0 +1,28 @@
+<included>
+  <appender class="net.logstash.logback.appender.LogstashTcpSocketAppender" name="TCP">
+    <destination>localhost:5000</destination>
+    <encoder class="net.logstash.logback.encoder.LoggingEventCompositeJsonEncoder">
+      <providers>
+        <arguments/>
+        <logLevel/>
+        <loggerName/>
+        <mdc>
+          <includeMdcKeyName>correlationId</includeMdcKeyName>
+        </mdc>
+        <message/>
+        <pattern>
+          <pattern>
+            {
+            "project": "kotlin-spring-ddd",
+            "logType": "event"
+            }
+          </pattern>
+        </pattern>
+        <stackTrace/>
+        <threadName/>
+        <timestamp/>
+        <version/>
+      </providers>
+    </encoder>
+  </appender>
+</included>

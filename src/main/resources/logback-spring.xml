@@ -1,10 +1,10 @@
 <configuration>
-  <include resource="included-console.xml"/>
-  <include resource="included-elk.xml"/>
+  <include resource="logback/console.xml"/>
+  <include resource="logback/logstash-event.xml"/>
+  <include resource="logback/logstash-event-tcp.xml"/>
 
   <springProfile name="local,test">
     <logger level="DEBUG" name="com.github.anddd7"/>
-    <logger level="INFO" name="org.hibernate.type.descriptor.sql.BasicBinder"/>
 
     <root level="DEBUG">"
       <appender-ref ref="STDOUT"/>
@@ -13,10 +13,9 @@
 
   <springProfile name="dev">
     <logger level="DEBUG" name="com.github.anddd7"/>
-    <logger level="INFO" name="org.hibernate.type.descriptor.sql.BasicBinder"/>
 
     <root level="INFO">"
-      <appender-ref ref="STDOUT"/>
+      <appender-ref ref="STASH"/>
     </root>
   </springProfile>
 
@@ -24,7 +23,7 @@
     <logger level="DEBUG" name="com.github.anddd7"/>
 
     <root level="INFO">"
-      <appender-ref ref="ELK"/>
+      <appender-ref ref="TCP"/>
     </root>
   </springProfile>
 </configuration>

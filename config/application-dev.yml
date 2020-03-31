@@ -11,4 +11,4 @@ spring:
     password: ${POSTGRES_PASSWORD:test}
 
 downstream:
-  stock: http://localhost:8080
+  stock: ${STOCK_URL}
