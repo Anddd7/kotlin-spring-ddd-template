@@ -14,32 +14,32 @@ import org.springframework.test.web.servlet.get
 @Sql("classpath:fixture/product_api.sql")
 internal class ProductControllerApiTest {
 
-  @Autowired
-  private lateinit var mvc: MockMvc
+    @Autowired
+    private lateinit var mvc: MockMvc
 
-  @Test
-  internal fun `should find all products`() {
-    mvc.get("/product").andExpect {
-      status { isOk }
+    @Test
+    internal fun `should find all products`() {
+        mvc.get("/product").andExpect {
+            status { isOk() }
+        }
     }
-  }
 
-  @Test
-  internal fun `should get the product by id`() {
-    stubFor(
-        get("/stock/product/1/stock")
-            .willReturn(WireMock.okJson("9999.99"))
-    )
+    @Test
+    internal fun `should get the product by id`() {
+        stubFor(
+            get("/stock/product/1/stock")
+                .willReturn(WireMock.okJson("9999.99"))
+        )
 
-    mvc.get("/product/1").andExpect {
-      status { isOk }
+        mvc.get("/product/1").andExpect {
+            status { isOk() }
+        }
     }
-  }
 
-  @Test
-  internal fun `should get stock of product`() {
-    mvc.get("/product/1/stock").andExpect {
-      status { isOk }
+    @Test
+    internal fun `should get stock of product`() {
+        mvc.get("/product/1/stock").andExpect {
+            status { isOk() }
+        }
     }
-  }
 }

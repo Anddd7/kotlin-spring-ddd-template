@@ -19,20 +19,20 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @Profile("test")
 @SpringBootApplication
 internal class TestApplication {
-  @Bean
-  fun wireMock(): WireMockServer {
-    val mockServer = WireMockServer(options().dynamicPort())
-    mockServer.start()
-    WireMock.configureFor("localhost", mockServer.port())
-    return mockServer
-  }
+    @Bean
+    fun wireMock(): WireMockServer {
+        val mockServer = WireMockServer(options().dynamicPort())
+        mockServer.start()
+        WireMock.configureFor("localhost", mockServer.port())
+        return mockServer
+    }
 
-  @Bean
-  @Primary
-  fun downstream(mockServer: WireMockServer) =
-      Downstream().apply {
-        stock = mockServer.url("stock")
-      }
+    @Bean
+    @Primary
+    fun downstream(mockServer: WireMockServer) =
+        Downstream().apply {
+            stock = mockServer.url("stock")
+        }
 }
 
 @Target(AnnotationTarget.CLASS)

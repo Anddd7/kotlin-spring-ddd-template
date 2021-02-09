@@ -7,13 +7,13 @@ import org.springframework.context.annotation.Configuration
 
 @Configuration
 class WebClientConfig {
-  @Bean
-  fun restTemplate(downstream: Downstream) =
-      RestTemplateBuilder().rootUri(downstream.stock).build()
+    @Bean
+    fun restTemplate(downstream: Downstream) =
+        RestTemplateBuilder().rootUri(downstream.stock).build()
 }
 
 @Configuration
 @ConfigurationProperties("downstream")
 class Downstream {
-  var stock: String = ""
+    var stock: String = ""
 }

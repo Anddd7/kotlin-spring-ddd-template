@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test
 
 @EnableApiTest
 class ApplicationContextTest {
-  @Test
-  fun contextLoads() {
-  }
+    @Test
+    fun contextLoads() {
+    }
 }

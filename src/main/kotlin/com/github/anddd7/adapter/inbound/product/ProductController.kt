@@ -15,14 +15,14 @@ import kotlin.random.Random
 @RestController
 @RequestMapping("/product")
 class ProductController(private val productUserCase: ProductUserCase) : EndPoint {
-  @GetMapping
-  fun products(): List<Product> = productUserCase.findAll()
+    @GetMapping
+    fun products(): List<Product> = productUserCase.findAll()
 
-  @GetMapping("/{id}")
-  fun productStock(@PathVariable id: Int): ProductStockDTO =
-      productUserCase.getProductStock(id)
+    @GetMapping("/{id}")
+    fun productStock(@PathVariable id: Int): ProductStockDTO =
+        productUserCase.getProductStock(id)
 
-  @GetMapping("/{id}/stock")
-  fun stock(@PathVariable id: Int): BigDecimal =
-      Random(id).nextFloat().let(::abs).toBigDecimal()
+    @GetMapping("/{id}/stock")
+    fun stock(@PathVariable id: Int): BigDecimal =
+        Random(id).nextFloat().let(::abs).toBigDecimal()
 }

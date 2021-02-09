@@ -15,35 +15,37 @@ import org.junit.jupiter.api.extension.ExtendWith
 
 @ExtendWith(MockKExtension::class)
 internal class ProductUserCaseTest {
-  @MockK
-  private lateinit var productRepository: ProductRepository
-  @MockK
-  private lateinit var stockRepository: StockRepository
-  @InjectMockKs
-  private lateinit var productUserCase: ProductUserCase
+    @MockK
+    private lateinit var productRepository: ProductRepository
 
-  @Test
-  fun `should find all products from db`() {
-    val expect = mockk<Product>()
-    every { productRepository.findAll() } returns listOf(expect)
+    @MockK
+    private lateinit var stockRepository: StockRepository
 
-    val result = productUserCase.findAll()
+    @InjectMockKs
+    private lateinit var productUserCase: ProductUserCase
 
-    assertThat(result).hasSize(1)
+    @Test
+    fun `should find all products from db`() {
+        val expect = mockk<Product>()
+        every { productRepository.findAll() } returns listOf(expect)
 
-    verify(exactly = 1) { productRepository.findAll() }
-  }
+        val result = productUserCase.findAll()
 
-  @Test
-  fun `should get product and stock info together`() {
-    every { productRepository.getOne(any()) } returns mockk(relaxed = true)
-    every { stockRepository.getStock(any()) } returns mockk()
+        assertThat(result).hasSize(1)
 
-    productUserCase.getProductStock(1)
-
-    verify(exactly = 1) {
-      productRepository.getOne(any())
-      stockRepository.getStock(any())
+        verify(exactly = 1) { productRepository.findAll() }
     }
-  }
+
+    @Test
+    fun `should get product and stock info together`() {
+        every { productRepository.getOne(any()) } returns mockk(relaxed = true)
+        every { stockRepository.getStock(any()) } returns mockk()
+
+        productUserCase.getProductStock(1)
+
+        verify(exactly = 1) {
+            productRepository.getOne(any())
+            stockRepository.getStock(any())
+        }
+    }
 }

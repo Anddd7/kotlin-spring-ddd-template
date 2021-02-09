@@ -26,7 +26,7 @@ java.targetCompatibility = JavaVersion.VERSION_11
 
 // import plugins into this project
 plugins {
-  val kotlinVersion = "1.3.70"
+  val kotlinVersion = "1.4.21"
 
   // core plugins, which is already include in plugin dependencies spec
   idea
@@ -42,14 +42,14 @@ plugins {
    * binary(external) plugins, provide id and version to resolve it
    * base plugin for spring-boot, provide plugins and tasks
    */
-  id("org.springframework.boot") version "2.2.4.RELEASE"
-  id("io.spring.dependency-management") version "1.0.9.RELEASE"
+  id("org.springframework.boot") version "2.4.2"
+  id("io.spring.dependency-management") version "1.0.11.RELEASE"
 
-  id("org.flywaydb.flyway") version "6.1.4"
+  id("org.flywaydb.flyway") version "7.5.2"
 
-  id("io.gitlab.arturbosch.detekt") version "1.3.0"
+  id("io.gitlab.arturbosch.detekt") version "1.16.0-RC1"
 
-  id("org.owasp.dependencycheck") version "5.3.2"
+  id("org.owasp.dependencycheck") version "6.1.0"
 }
 
 /** -------------- configure imported plugin -------------- */
@@ -87,12 +87,12 @@ flyway {
 
 detekt {
 //  failFast = true
-  toolVersion = "1.1.1"
+  toolVersion = "1.16.0-RC1"
   input = files("src/main/kotlin")
 }
 
 jacoco {
-  toolVersion = "0.8.5"
+  toolVersion = "0.8.6"
 }
 
 noArg {
@@ -107,8 +107,8 @@ dependencies {
   implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
   /* kotlin test */
   testImplementation("org.junit.jupiter:junit-jupiter-engine")
-  testImplementation("io.mockk:mockk:1.9.3")
-  testImplementation("org.assertj:assertj-core:3.15.0")
+  testImplementation("io.mockk:mockk:1.10.5")
+  testImplementation("org.assertj:assertj-core:3.19.0")
   /* kotlin coroutines */
 //  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core")
 //  implementation("org.jetbrains.kotlinx:kotlinx-coroutines-jdk8")
@@ -122,7 +122,7 @@ dependencies {
     exclude(group = "org.mockito")
     exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
   }
-  testImplementation("com.ninja-squad:springmockk:1.1.3")
+  testImplementation("com.ninja-squad:springmockk:3.0.1")
   /* security */
 //  implementation("org.springframework.boot:spring-boot-starter-security")
 //  implementation("io.jsonwebtoken:jjwt:0.9.1")
@@ -130,25 +130,25 @@ dependencies {
 
   /* monitoring x logging */
   implementation("org.springframework.boot:spring-boot-starter-actuator")
-  implementation("net.logstash.logback:logstash-logback-encoder:6.3")
+  implementation("net.logstash.logback:logstash-logback-encoder:6.6")
 
   /* swagger */
-  implementation("io.springfox:springfox-swagger2:2.9.2")
-  runtimeOnly("io.springfox:springfox-swagger-ui:2.9.2")
+  implementation("io.springfox:springfox-swagger2:3.0.0")
+  runtimeOnly("io.springfox:springfox-swagger-ui:3.0.0")
 
   /* db */
   implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-  implementation("com.vladmihalcea:hibernate-types-52:2.3.2")
+  implementation("com.vladmihalcea:hibernate-types-52:2.10.2")
   runtimeOnly("org.flywaydb:flyway-core")
   runtimeOnly("org.postgresql:postgresql")
 
   /* mock db x server */
-  testImplementation("io.zonky.test:embedded-database-spring-test:1.5.2")
-  testImplementation("com.github.tomakehurst:wiremock:2.26.0")
+  testImplementation("io.zonky.test:embedded-database-spring-test:1.6.2")
+  testImplementation("com.github.tomakehurst:wiremock:2.27.2")
 
   /* architecture verification */
-  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.13.1")
-  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.13.1")
+  testImplementation("com.tngtech.archunit:archunit-junit5-api:0.16.0")
+  testRuntimeOnly("com.tngtech.archunit:archunit-junit5-engine:0.16.0")
 }
 
 /** -------------- configure tasks -------------- */

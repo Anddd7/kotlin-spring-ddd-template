@@ -25,39 +25,39 @@ import java.math.BigDecimal
 @AutoConfigureWebMvc
 internal class ProductControllerTest {
 
-  @Autowired
-  private lateinit var mvc: MockMvc
+    @Autowired
+    private lateinit var mvc: MockMvc
 
-  @MockkBean
-  private lateinit var productUserCase: ProductUserCase
+    @MockkBean
+    private lateinit var productUserCase: ProductUserCase
 
-  @Test
-  internal fun `should find all products`() {
-    val expect = Product(name = "test", price = BigDecimal.ONE)
-    every { productUserCase.findAll() } returns listOf(expect)
+    @Test
+    internal fun `should find all products`() {
+        val expect = Product(name = "test", price = BigDecimal.ONE)
+        every { productUserCase.findAll() } returns listOf(expect)
 
-    mvc.get("/product").andExpect {
-      status { isOk }
-      jsonPath("$.length()", equalTo(1))
-      jsonPath("$[0].name", equalTo(expect.name))
+        mvc.get("/product").andExpect {
+            status { isOk() }
+            jsonPath("$.length()", equalTo(1))
+            jsonPath("$[0].name", equalTo(expect.name))
+        }
     }
-  }
 
-  @Test
-  internal fun `should get the product by id`() {
-    val expect = ProductStockDTO(name = "test", price = BigDecimal.ONE, stock = BigDecimal.ONE)
-    every { productUserCase.getProductStock(any()) } returns expect
+    @Test
+    internal fun `should get the product by id`() {
+        val expect = ProductStockDTO(name = "test", price = BigDecimal.ONE, stock = BigDecimal.ONE)
+        every { productUserCase.getProductStock(any()) } returns expect
 
-    mvc.get("/product/1").andExpect {
-      status { isOk }
-      jsonPath("$.name", equalTo(expect.name))
+        mvc.get("/product/1").andExpect {
+            status { isOk() }
+            jsonPath("$.name", equalTo(expect.name))
+        }
     }
-  }
 
-  @Test
-  internal fun `should get stock of product`() {
-    mvc.get("/product/1/stock").andExpect {
-      status { isOk }
+    @Test
+    internal fun `should get stock of product`() {
+        mvc.get("/product/1/stock").andExpect {
+            status { isOk() }
+        }
     }
-  }
 }

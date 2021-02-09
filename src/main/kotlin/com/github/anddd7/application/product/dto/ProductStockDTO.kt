@@ -10,6 +10,6 @@ data class ProductStockDTO(
     val price: BigDecimal,
     val stock: BigDecimal
 ) : DTO {
-  constructor(product: Product, stock: BigDecimal) : this(product.id, product.name, product.price, stock)
+    constructor(product: Product, stock: BigDecimal) : this(product.id, product.name, product.price, stock)
 }
 

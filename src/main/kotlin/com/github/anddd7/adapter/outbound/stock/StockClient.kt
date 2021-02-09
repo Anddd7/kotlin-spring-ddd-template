@@ -8,7 +8,7 @@ import java.math.BigDecimal
 
 @Repository
 class StockClient(private val restTemplate: RestTemplate) : StockRepository, RepositoryImpl {
-  override fun getStock(productId: Int): BigDecimal =
-      restTemplate.getForObject("/product/$productId/stock", BigDecimal::class.java)
-          ?: throw IllegalArgumentException()
+    override fun getStock(productId: Int): BigDecimal =
+        restTemplate.getForObject("/product/$productId/stock", BigDecimal::class.java)
+            ?: throw IllegalArgumentException()
 }

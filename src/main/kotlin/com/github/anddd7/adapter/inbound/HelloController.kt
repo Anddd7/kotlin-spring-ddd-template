@@ -10,15 +10,15 @@ import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping
 class HelloController(private val environment: Environment) : EndPoint {
-  @Value("\${image.version:development}")
-  private lateinit var imageVersion: String
+    @Value("\${image.version:development}")
+    private lateinit var imageVersion: String
 
-  @GetMapping("/profile")
-  fun profile() = mapOf(
-      "build.env" to environment.activeProfiles,
-      "image.version" to imageVersion
-  )
+    @GetMapping("/profile")
+    fun profile() = mapOf(
+        "build.env" to environment.activeProfiles,
+        "image.version" to imageVersion
+    )
 
-  @GetMapping("/hello")
-  fun hello() = "Hello, this is kotlin-spring-webflux-ddd !"
+    @GetMapping("/hello")
+    fun hello() = "Hello, this is kotlin-spring-webflux-ddd !"
 }

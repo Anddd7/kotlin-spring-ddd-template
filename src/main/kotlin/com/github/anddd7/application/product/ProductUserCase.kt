@@ -13,13 +13,13 @@ class ProductUserCase(
     productRepository: ProductRepository,
     private val stockRepository: StockRepository
 ) : UserCase {
-  private val productService: ProductService = ProductService(productRepository)
+    private val productService: ProductService = ProductService(productRepository)
 
-  fun findAll(): List<Product> = productService.findAll()
-  fun getProductStock(id: Int): ProductStockDTO {
-    val product = productService.getOne(id)
-    val stock = stockRepository.getStock(id)
+    fun findAll(): List<Product> = productService.findAll()
+    fun getProductStock(id: Int): ProductStockDTO {
+        val product = productService.getOne(id)
+        val stock = stockRepository.getStock(id)
 
-    return ProductStockDTO(product, stock)
-  }
+        return ProductStockDTO(product, stock)
+    }
 }
