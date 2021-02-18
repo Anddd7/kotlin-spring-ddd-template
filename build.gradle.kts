@@ -20,7 +20,6 @@ buildscript {
 }
 
 java.sourceCompatibility = JavaVersion.VERSION_11
-java.targetCompatibility = JavaVersion.VERSION_11
 
 /** -------------- import & apply plugins -------------- */
 
@@ -36,7 +35,6 @@ plugins {
   kotlin("jvm") version kotlinVersion
   kotlin("plugin.spring") version kotlinVersion
   kotlin("plugin.jpa") version kotlinVersion
-  kotlin("plugin.noarg") version kotlinVersion
 
   /**
    * binary(external) plugins, provide id and version to resolve it
@@ -93,10 +91,6 @@ detekt {
 
 jacoco {
   toolVersion = "0.8.6"
-}
-
-noArg {
-  annotation("javax.persistence.Entity")
 }
 
 /** -------------- dependencies management -------------- */
